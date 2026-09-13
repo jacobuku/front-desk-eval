@@ -1,0 +1,5 @@
+nano DEMO.md
+nano DEMO.md
+ls -l demo_cmds.txt DEMO.md
+clear
+--clear
