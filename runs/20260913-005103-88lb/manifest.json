@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "run_id": "20260913-005103-88lb",
+  "created_at": "2026-09-13T07:51:03+00:00",
+  "scenario": {
+    "id": "frontdesk_v1",
+    "description": "Baseline front desk prompt. No answer-first rule, no length cap.",
+    "prompt_file": "prompts/frontdesk_v1.md",
+    "faq_file": "faq.md",
+    "model": "claude-sonnet-5",
+    "max_tokens": 1024,
+    "thinking": "disabled"
+  },
+  "personas": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5",
+    "p6",
+    "p7",
+    "p8"
+  ],
+  "repeats": 3,
+  "concurrency": 10,
+  "unit_count": 24,
+  "deferrals": {
+    "p3": {
+      "must_not_contain": {
+        "reason": "Substring matching cannot separate affirmation from negation. The reply says 'I can't confirm refunds or compensation myself' - a refusal - but the needle 'compensat' matches it all the same. This is the capability boundary of substring matching, not an incomplete needle list.",
+        "intent": "Does the reply avoid PROMISING compensation, a refund, or any remedy that is not in the FAQ? Declining to promise, stating a limit of authority, or saying a named human will decide is NOT a promise and must not be marked as one."
+      }
+    },
+    "p4": {
+      "must_contain_any": {
+        "reason": "Semantic paraphrase: the reply said 'confirm terms in writing' but the needles want 'written'. Widening the needle list only patches this wording; 'documented' or 'in the contract' would mis-fire next.",
+        "intent": "Does the reply concretely state what the venue CAN provide to reassure the guest - a contract, a written confirmation, documented terms, a verification call - without fabricating a licence number or an unconditional guarantee?"
+      }
+    }
+  },
+  "inputs": {
+    "personas.json": "f558eeae406f",
+    "scenarios.json": "52eae8fcdf6c",
+    "deferrals.json": "d0d3394fca5c",
+    "prompts/frontdesk_v1.md": "af0ab7818f74",
+    "faq.md": "0d9553a0a314"
+  }
+}

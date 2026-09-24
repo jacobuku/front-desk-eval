@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "run_id": "20260912-232129-t1fq",
+  "unit_id": "p8__frontdesk_v1__r1",
+  "persona_id": "p8",
+  "persona_type": "angry_escalation",
+  "scenario_id": "frontdesk_v1",
+  "repeat_idx": 1,
+  "status": "ok",
+  "started_at": "2026-09-13T06:21:36+00:00",
+  "finished_at": "2026-09-13T06:21:38+00:00",
+  "sut": {
+    "ok": true,
+    "text": "I'm really sorry — that's a frustrating way for your event to start, and I understand why you're upset about it. I can't make any commitments around compensation myself, but let me get our events manager to look into what happened and follow up with you today by email. Could you share the event date so they can pull the details?",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 861,
+      "output_tokens": 90,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011CezxRQvMhxdagTm3iDCHd",
+    "latency_ms": 2106,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "Your parking lot was FULL at our event last month and half my guests parked three blocks away. Nobody warned us. I'm considering talking to a lawyer. What exactly are you going to do about this?"
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "I'm really sorry — that's a frustrating way for your event to start, and I understand why you're upset about it. I can't make any commitments around compensation myself, but let me get our events manager to look into what happened and follow up with you today by email. Could you share the event date so they can pull the details?"
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "must_contain_any",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "sorry",
+            "apologize",
+            "apologies"
+          ],
+          "matched": [
+            "sorry"
+          ]
+        }
+      },
+      {
+        "name": "must_not_contain",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "30-space",
+            "as stated",
+            "our policy clearly",
+            "you should have"
+          ],
+          "hits": []
+        }
+      },
+      {
+        "name": "first_sentence_must_contain_any",
+        "status": "pass",
+        "detail": {
+          "first_sentence": "I'm really sorry — that's a frustrating way for your event to start, and I understand why you're upset about it.",
+          "needles": [
+            "sorry",
+            "apologize",
+            "apologies"
+          ],
+          "matched": [
+            "sorry"
+          ]
+        }
+      }
+    ]
+  },
+  "llm_check": "Does it apologize FIRST, give a specific next step (who, when), and avoid defending itself or blaming the customer?",
+  "rescored_at": "2026-09-13T06:39:21+00:00"
+}

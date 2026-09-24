@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "run_id": "20260913-005112-zqrw",
+  "unit_id": "p5__frontdesk_v2__r0",
+  "persona_id": "p5",
+  "persona_type": "urgent_blocked",
+  "scenario_id": "frontdesk_v2",
+  "repeat_idx": 0,
+  "status": "ok",
+  "started_at": "2026-09-13T07:51:15+00:00",
+  "finished_at": "2026-09-13T07:51:17+00:00",
+  "sut": {
+    "ok": true,
+    "text": "I don't have availability information for September — the open dates I can confirm are in October (10/3, 10/10, 10/17, plus most weekdays). I can't check September dates myself since there's no live booking system on my end.\n\nLet me get our events manager to confirm September 19th for you — they'll email you today with a straight yes or no. In the meantime, 30 guests fits comfortably within our 40-seated/80-standing capacity either way.",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 50,
+      "output_tokens": 138,
+      "cache_read_input_tokens": 1316,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011Cf15Fxi6GTmAzSWtAGP6z",
+    "latency_ms": 2270,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "Is next Saturday (Sept 19) available for a 30-person birthday party? I need to know today. Please don't tell me to call during business hours."
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "I don't have availability information for September — the open dates I can confirm are in October (10/3, 10/10, 10/17, plus most weekdays). I can't check September dates myself since there's no live booking system on my end.\n\nLet me get our events manager to confirm September 19th for you — they'll email you today with a straight yes or no. In the meantime, 30 guests fits comfortably within our 40-seated/80-standing capacity either way."
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "must_not_contain",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "business hours",
+            "call us",
+            "give us a call",
+            "Monday"
+          ],
+          "hits": []
+        }
+      },
+      {
+        "name": "first_sentence_must_contain_any",
+        "status": "pass",
+        "detail": {
+          "first_sentence": "I don't have availability information for September — the open dates I can confirm are in October (10/3, 10/10, 10/17, plus most weekdays).",
+          "needles": [
+            "yes",
+            "no",
+            "not listed",
+            "available",
+            "unavailable",
+            "confirm"
+          ],
+          "matched": [
+            "confirm"
+          ]
+        }
+      }
+    ]
+  },
+  "llm_check": "Does the FIRST sentence answer yes/no or say how to confirm today? Does it avoid redirecting to phone/business hours?"
+}

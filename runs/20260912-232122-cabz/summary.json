@@ -1,0 +1,38 @@
+{
+  "run_id": "20260912-232122-cabz",
+  "scenario_id": "frontdesk_v1",
+  "model": "claude-sonnet-5",
+  "generated_at": "2026-09-13T06:21:25+00:00",
+  "unit_count": 1,
+  "skipped_on_resume": 0,
+  "crashed": 0,
+  "totals": {
+    "pass": 1,
+    "fail": 0,
+    "no_evidence": 0,
+    "sut_error": 0,
+    "truncated": 0
+  },
+  "check_failures": {},
+  "unstable_personas": [],
+  "by_persona": {
+    "p6": {
+      "persona_type": "byob_gap",
+      "results": [
+        "pass"
+      ],
+      "failed_checks": [],
+      "latency_ms": [
+        2272
+      ],
+      "stable": true,
+      "verdict": "pass"
+    }
+  },
+  "tokens": {
+    "input": 833,
+    "output": 135,
+    "cache_read": 0
+  },
+  "est_cost_usd": 0.003
+}

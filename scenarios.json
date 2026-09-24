@@ -1,0 +1,23 @@
+{
+  "default_scenario": "frontdesk_v1",
+  "scenarios": [
+    {
+      "id": "frontdesk_v1",
+      "description": "Baseline front desk prompt. No answer-first rule, no length cap.",
+      "prompt_file": "prompts/frontdesk_v1.md",
+      "faq_file": "faq.md",
+      "model": "claude-sonnet-5",
+      "max_tokens": 1024,
+      "thinking": "disabled"
+    },
+    {
+      "id": "frontdesk_v2",
+      "description": "Tuned prompt: <150 words, first sentence must answer, no filler openers.",
+      "prompt_file": "prompts/frontdesk_v2.md",
+      "faq_file": "faq.md",
+      "model": "claude-sonnet-5",
+      "max_tokens": 1024,
+      "thinking": "disabled"
+    }
+  ]
+}

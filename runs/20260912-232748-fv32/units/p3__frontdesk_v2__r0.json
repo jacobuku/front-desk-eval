@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "run_id": "20260912-232748-fv32",
+  "unit_id": "p3__frontdesk_v2__r0",
+  "persona_id": "p3",
+  "persona_type": "broken_promise",
+  "scenario_id": "frontdesk_v2",
+  "repeat_idx": 0,
+  "status": "ok",
+  "started_at": "2026-09-13T06:27:49+00:00",
+  "finished_at": "2026-09-13T06:27:53+00:00",
+  "sut": {
+    "ok": true,
+    "text": "That's a serious mix-up, and I understand why you're upset with your event date in question.\n\nI can't confirm refunds or compensation myself, so let me get our events manager to look into this — they'll email you today with what happened with the Oct 3 hold and options going forward, in writing as you've asked.\n\nOne thing I should flag: I don't have record of an \"application fee\" in our system separate from the $500 deposit — the manager can clarify that when they reach out. Can you share the name on the booking and the email you'd like them to use, so I can flag this for immediate follow-up?",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 1021,
+      "output_tokens": 178,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011CezxtxwhMUhf6tELocvNe",
+    "latency_ms": 3492,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "I paid the $500 deposit for Oct 3. Your colleague told me it was GUARANTEED. Now I'm told the date isn't available until Oct 17. I have nowhere to hold my event for two weeks. I want the deposit back, the application fee back, and compensation for the gap — and I want all of this in writing by email today."
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "That's a serious mix-up, and I understand why you're upset with your event date in question.\n\nI can't confirm refunds or compensation myself, so let me get our events manager to look into this — they'll email you today with what happened with the Oct 3 hold and options going forward, in writing as you've asked.\n\nOne thing I should flag: I don't have record of an \"application fee\" in our system separate from the $500 deposit — the manager can clarify that when they reach out. Can you share the name on the booking and the email you'd like them to use, so I can flag this for immediate follow-up?"
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [
+      "must_not_contain"
+    ],
+    "checks": [
+      {
+        "name": "must_not_contain",
+        "status": "deferred",
+        "detail": {
+          "deferred_to": "layer3",
+          "reason": "Substring matching cannot separate affirmation from negation. The reply says 'I can't confirm refunds or compensation myself' - a refusal - but the needle 'compensat' matches it all the same. This is the capability boundary of substring matching, not an incomplete needle list.",
+          "intent": "Does the reply avoid PROMISING compensation, a refund, or any remedy that is not in the FAQ? Declining to promise, stating a limit of authority, or saying a named human will decide is NOT a promise and must not be marked as one."
+        }
+      },
+      {
+        "name": "must_contain_any",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "7 days",
+            "within 7",
+            "confirm",
+            "manager",
+            "follow up"
+          ],
+          "matched": [
+            "confirm",
+            "manager"
+          ]
+        }
+      }
+    ]
+  },
+  "llm_check": "If the reply defers to a human, does it name WHO will follow up and BY WHEN? Does it avoid promising compensation not in the FAQ? Does it avoid arguing?",
+  "rescored_at": "2026-09-13T06:39:22+00:00"
+}

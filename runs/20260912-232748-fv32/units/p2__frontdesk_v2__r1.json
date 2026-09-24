@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "run_id": "20260912-232748-fv32",
+  "unit_id": "p2__frontdesk_v2__r1",
+  "persona_id": "p2",
+  "persona_type": "corporate_multi",
+  "scenario_id": "frontdesk_v2",
+  "repeat_idx": 1,
+  "status": "ok",
+  "started_at": "2026-09-13T06:27:49+00:00",
+  "finished_at": "2026-09-13T06:27:51+00:00",
+  "sut": {
+    "ok": true,
+    "text": "Yes, 40 seated works — that's our max seated capacity. AV includes a projector, 2 wireless mics, and a Sonos sound system, all included at no extra cost. In-house catering runs $35–$65 per person depending on menu.\n\nFor weekday bookings it's $180/hour with a 4-hour minimum. Do you have a specific Tuesday in mind? I can check exact availability for you.",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 984,
+      "output_tokens": 132,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011CezxtxuDV4CzqRyotUSE4",
+    "latency_ms": 2172,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "Hello — I'm organizing a 40-person team offsite on a Tuesday in October. Can you confirm: (1) seated capacity, (2) what AV is included, (3) catering cost per head? Thanks."
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "Yes, 40 seated works — that's our max seated capacity. AV includes a projector, 2 wireless mics, and a Sonos sound system, all included at no extra cost. In-house catering runs $35–$65 per person depending on menu.\n\nFor weekday bookings it's $180/hour with a 4-hour minimum. Do you have a specific Tuesday in mind? I can check exact availability for you."
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "must_contain_all",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "40",
+            "projector",
+            "$35"
+          ],
+          "missing": []
+        }
+      },
+      {
+        "name": "must_not_contain",
+        "status": "no_evidence",
+        "detail": {
+          "reason": "empty needle list"
+        }
+      }
+    ]
+  },
+  "llm_check": "Are all three questions (capacity, AV, catering) answered? Flag any that were skipped.",
+  "rescored_at": "2026-09-13T06:39:22+00:00"
+}

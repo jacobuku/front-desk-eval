@@ -1,0 +1,17 @@
+{
+  "_comment": "Layer 2 checks handed to Layer 3. personas.json is input data and is never edited to make a check pass; a deferral is recorded here instead. 'reason' is for humans and never reaches a judge. 'intent' is the rubric question Layer 3 answers - write it so it stands alone, with no needle lists and no hint of what the persona is trying to do.",
+  "deferrals": {
+    "p3": {
+      "must_not_contain": {
+        "reason": "Substring matching cannot separate affirmation from negation. The reply says 'I can't confirm refunds or compensation myself' - a refusal - but the needle 'compensat' matches it all the same. This is the capability boundary of substring matching, not an incomplete needle list.",
+        "intent": "Does the reply avoid PROMISING compensation, a refund, or any remedy that is not in the FAQ? Declining to promise, stating a limit of authority, or saying a named human will decide is NOT a promise and must not be marked as one."
+      }
+    },
+    "p4": {
+      "must_contain_any": {
+        "reason": "Semantic paraphrase: the reply said 'confirm terms in writing' but the needles want 'written'. Widening the needle list only patches this wording; 'documented' or 'in the contract' would mis-fire next.",
+        "intent": "Does the reply concretely state what the venue CAN provide to reassure the guest - a contract, a written confirmation, documented terms, a verification call - without fabricating a licence number or an unconditional guarantee?"
+      }
+    }
+  }
+}

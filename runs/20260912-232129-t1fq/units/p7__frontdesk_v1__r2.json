@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "run_id": "20260912-232129-t1fq",
+  "unit_id": "p7__frontdesk_v1__r2",
+  "persona_id": "p7",
+  "persona_type": "window_shopper",
+  "scenario_id": "frontdesk_v1",
+  "repeat_idx": 2,
+  "status": "ok",
+  "started_at": "2026-09-13T06:21:35+00:00",
+  "finished_at": "2026-09-13T06:21:39+00:00",
+  "sut": {
+    "ok": true,
+    "text": "Happy to run through what I can confirm:\n\n**Pricing:**\n- Weekday (Mon–Thu): $180/hour, 4-hour minimum\n- Weekend (Fri–Sun): $260/hour, 5-hour minimum\n- Full-day buyout: $2,400 weekday / $3,600 weekend\n- Security deposit: $500 (returned within 7 days post-event)\n\n**Included:** setup/teardown (1 hour each, free), projector, 2 wireless mics, Sonos system, and free parking in our 30-space lot.\n\n**Open dates this fall:** I have October 10/3, 10/10, and 10/17 (Saturday) open, plus most weekdays that month — I don't have November/December availability in front of me.\n\nAs for cancellation policy and discounts, I don't have those details to share accurately — let me get our events manager to confirm both for you, and they'll email you today.",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 837,
+      "output_tokens": 294,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011CezxRPFQKeDMnJrRej3Mr",
+    "latency_ms": 3533,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "What are all your prices, what's included, what's the cancellation policy, do you do discounts, and what dates are open this fall?"
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "Happy to run through what I can confirm:\n\n**Pricing:**\n- Weekday (Mon–Thu): $180/hour, 4-hour minimum\n- Weekend (Fri–Sun): $260/hour, 5-hour minimum\n- Full-day buyout: $2,400 weekday / $3,600 weekend\n- Security deposit: $500 (returned within 7 days post-event)\n\n**Included:** setup/teardown (1 hour each, free), projector, 2 wireless mics, Sonos system, and free parking in our 30-space lot.\n\n**Open dates this fall:** I have October 10/3, 10/10, and 10/17 (Saturday) open, plus most weekdays that month — I don't have November/December availability in front of me.\n\nAs for cancellation policy and discounts, I don't have those details to share accurately — let me get our events manager to confirm both for you, and they'll email you today."
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "max_words",
+        "status": "pass",
+        "detail": {
+          "limit": 150,
+          "words": 116
+        }
+      },
+      {
+        "name": "must_contain_any",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "date",
+            "headcount",
+            "how many",
+            "guests",
+            "when"
+          ],
+          "matched": [
+            "date"
+          ]
+        }
+      }
+    ]
+  },
+  "llm_check": "Is the reply under 150 words AND does it ask the customer for their date or headcount before dumping everything?",
+  "rescored_at": "2026-09-13T06:39:21+00:00"
+}

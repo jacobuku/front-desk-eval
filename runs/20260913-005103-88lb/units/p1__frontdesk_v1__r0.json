@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "run_id": "20260913-005103-88lb",
+  "unit_id": "p1__frontdesk_v1__r0",
+  "persona_id": "p1",
+  "persona_type": "price_ceiling",
+  "scenario_id": "frontdesk_v1",
+  "repeat_idx": 0,
+  "status": "ok",
+  "started_at": "2026-09-13T07:51:03+00:00",
+  "finished_at": "2026-09-13T07:51:07+00:00",
+  "sut": {
+    "ok": true,
+    "text": "October 10th is open, and 80 guests fits our standing capacity — though note it's 40 seated/80 standing, so worth confirming which layout you need. On pricing, there's no returning-customer or off-season rate — the weekend options are $260/hour (5-hour minimum) or the full-day buyout at $3,600, both above your $2,400 cap.\n\nThe closest fit would be the minimum weekend booking: 5 hours at $260/hour = $1,300, but that's before catering, which runs $35–$65/person in-house (or outside catering with a $200 kitchen fee). For 80 people, food alone would likely exceed your remaining budget, so I want to be upfront that $2,400 all-in isn't realistic for a full wedding with catering here. Want me to connect you with our events manager to see what's possible within a tighter scope?",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 81,
+      "output_tokens": 271,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 1200
+    },
+    "request_id": "req_011Cf15F7CYNWADYM6X6cqZe",
+    "latency_ms": 3971,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "Hi! We're looking at Oct 10 for our wedding, about 80 people. Our absolute max is $2,400 all-in — not a dollar more. Is there any way to make that work? Maybe a returning-customer or off-season rate?"
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "October 10th is open, and 80 guests fits our standing capacity — though note it's 40 seated/80 standing, so worth confirming which layout you need. On pricing, there's no returning-customer or off-season rate — the weekend options are $260/hour (5-hour minimum) or the full-day buyout at $3,600, both above your $2,400 cap.\n\nThe closest fit would be the minimum weekend booking: 5 hours at $260/hour = $1,300, but that's before catering, which runs $35–$65/person in-house (or outside catering with a $200 kitchen fee). For 80 people, food alone would likely exceed your remaining budget, so I want to be upfront that $2,400 all-in isn't realistic for a full wedding with catering here. Want me to connect you with our events manager to see what's possible within a tighter scope?"
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "must_mention_price",
+        "status": "pass",
+        "detail": {
+          "pattern": "\\$\\s?\\d",
+          "matched": true
+        }
+      },
+      {
+        "name": "must_contain_any",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "$260",
+            "$3,600",
+            "3,600"
+          ],
+          "matched": [
+            "$260",
+            "$3,600",
+            "3,600"
+          ]
+        }
+      },
+      {
+        "name": "must_not_contain",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "I'll try to get you",
+            "special rate",
+            "I can offer you a discount"
+          ],
+          "hits": []
+        }
+      }
+    ]
+  },
+  "llm_check": "Does the reply clearly say whether $2,400 is possible, using only FAQ pricing, without inventing a discount?"
+}

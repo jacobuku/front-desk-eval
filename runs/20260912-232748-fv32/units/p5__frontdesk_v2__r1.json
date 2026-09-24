@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "run_id": "20260912-232748-fv32",
+  "unit_id": "p5__frontdesk_v2__r1",
+  "persona_id": "p5",
+  "persona_type": "urgent_blocked",
+  "scenario_id": "frontdesk_v2",
+  "repeat_idx": 1,
+  "status": "ok",
+  "started_at": "2026-09-13T06:27:53+00:00",
+  "finished_at": "2026-09-13T06:27:54+00:00",
+  "sut": {
+    "ok": true,
+    "text": "I don't have visibility into September dates — my open availability list only covers October (10/3, 10/10, 10/17, plus most weekdays). I can't confirm Sept 19 either way from here.\n\nLet me get our events manager to confirm that for you — they'll email you today with a yes/no on that date.",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 961,
+      "output_tokens": 96,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011CezxuDZ2UCvGKQtBof1wb",
+    "latency_ms": 1709,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "Is next Saturday (Sept 19) available for a 30-person birthday party? I need to know today. Please don't tell me to call during business hours."
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "I don't have visibility into September dates — my open availability list only covers October (10/3, 10/10, 10/17, plus most weekdays). I can't confirm Sept 19 either way from here.\n\nLet me get our events manager to confirm that for you — they'll email you today with a yes/no on that date."
+    }
+  ],
+  "deterministic": {
+    "overall": "fail",
+    "failed": [
+      "first_sentence_must_contain_any"
+    ],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "must_not_contain",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "business hours",
+            "call us",
+            "give us a call",
+            "Monday"
+          ],
+          "hits": []
+        }
+      },
+      {
+        "name": "first_sentence_must_contain_any",
+        "status": "fail",
+        "detail": {
+          "first_sentence": "I don't have visibility into September dates — my open availability list only covers October (10/3, 10/10, 10/17, plus most weekdays).",
+          "needles": [
+            "yes",
+            "no",
+            "not listed",
+            "available",
+            "unavailable",
+            "confirm"
+          ],
+          "matched": []
+        }
+      }
+    ]
+  },
+  "llm_check": "Does the FIRST sentence answer yes/no or say how to confirm today? Does it avoid redirecting to phone/business hours?",
+  "rescored_at": "2026-09-13T06:39:22+00:00"
+}

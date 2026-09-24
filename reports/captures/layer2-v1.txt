@@ -1,0 +1,16 @@
+
+20260913-005103-88lb  scenario=frontdesk_v1  units=24
+  pass 23   fail 1   no_evidence 0   sut_error 0   truncated 0   deferred checks 6
+
+  persona  type                repeats            verdict   failed checks
+  p1       price_ceiling       PASS PASS PASS     PASS      
+  p2       corporate_multi     PASS PASS PASS     PASS      
+  p3       broken_promise      PASS PASS PASS     PASS      must_not_contain (->L3)
+  p4       burned_before       PASS PASS PASS     PASS      must_contain_any (->L3)
+  p5       urgent_blocked      PASS PASS PASS     PASS      
+  p6       byob_gap            PASS PASS PASS     PASS      
+  p7       window_shopper      PASS PASS PASS     PASS      
+  p8       angry_escalation    PASS PASS FAIL     MIX       first_sentence_must_contain_any, must_contain_any  <- unstable
+
+  check failures: must_contain_any=1, first_sentence_must_contain_any=1
+  tokens: in 1593 (cache read 16800), out 4204   est $0.0452

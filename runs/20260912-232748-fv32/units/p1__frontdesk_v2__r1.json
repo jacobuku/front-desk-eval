@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "run_id": "20260912-232748-fv32",
+  "unit_id": "p1__frontdesk_v2__r1",
+  "persona_id": "p1",
+  "persona_type": "price_ceiling",
+  "scenario_id": "frontdesk_v2",
+  "repeat_idx": 1,
+  "status": "ok",
+  "started_at": "2026-09-13T06:27:49+00:00",
+  "finished_at": "2026-09-13T06:27:53+00:00",
+  "sut": {
+    "ok": true,
+    "text": "October 10 is open, and 80 people fits our standing capacity — but tight on budget: the weekend full-day buyout is $3,600, and that's our lowest option for a Saturday (no returning-customer or off-season discounts exist on our list). Even the base weekend rate at $260/hour with a 5-hour minimum runs $1,300 before food, AV use, or the $500 refundable deposit.\n\nThere's no way to get to $2,400 all-in for a Saturday with catering included under our current pricing. If a weekday works instead, the full-day buyout is $2,400 — right at your max, though that wouldn't include food.\n\nWant me to check what a weekday buyout plus minimal catering could look like for your headcount?",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 992,
+      "output_tokens": 232,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011CezxtxnXEn8XwSW3v6z5Q",
+    "latency_ms": 3547,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "Hi! We're looking at Oct 10 for our wedding, about 80 people. Our absolute max is $2,400 all-in — not a dollar more. Is there any way to make that work? Maybe a returning-customer or off-season rate?"
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "October 10 is open, and 80 people fits our standing capacity — but tight on budget: the weekend full-day buyout is $3,600, and that's our lowest option for a Saturday (no returning-customer or off-season discounts exist on our list). Even the base weekend rate at $260/hour with a 5-hour minimum runs $1,300 before food, AV use, or the $500 refundable deposit.\n\nThere's no way to get to $2,400 all-in for a Saturday with catering included under our current pricing. If a weekday works instead, the full-day buyout is $2,400 — right at your max, though that wouldn't include food.\n\nWant me to check what a weekday buyout plus minimal catering could look like for your headcount?"
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "must_mention_price",
+        "status": "pass",
+        "detail": {
+          "pattern": "\\$\\s?\\d",
+          "matched": true
+        }
+      },
+      {
+        "name": "must_contain_any",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "$260",
+            "$3,600",
+            "3,600"
+          ],
+          "matched": [
+            "$260",
+            "$3,600",
+            "3,600"
+          ]
+        }
+      },
+      {
+        "name": "must_not_contain",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "I'll try to get you",
+            "special rate",
+            "I can offer you a discount"
+          ],
+          "hits": []
+        }
+      }
+    ]
+  },
+  "llm_check": "Does the reply clearly say whether $2,400 is possible, using only FAQ pricing, without inventing a discount?",
+  "rescored_at": "2026-09-13T06:39:22+00:00"
+}

@@ -1,0 +1,167 @@
+{
+  "run_id": "20260913-005112-zqrw",
+  "scenario_id": "frontdesk_v2",
+  "model": "claude-sonnet-5",
+  "generated_at": "2026-09-13T07:51:21+00:00",
+  "unit_count": 24,
+  "skipped_on_resume": 0,
+  "crashed": 0,
+  "totals": {
+    "pass": 24,
+    "fail": 0,
+    "no_evidence": 0,
+    "sut_error": 0,
+    "truncated": 0,
+    "deferred_checks": 6
+  },
+  "check_failures": {},
+  "unstable_personas": [],
+  "by_persona": {
+    "p1": {
+      "persona_type": "price_ceiling",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        2525,
+        3822,
+        3529
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p2": {
+      "persona_type": "corporate_multi",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        2536,
+        2994,
+        2355
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p3": {
+      "persona_type": "broken_promise",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [
+        "must_not_contain"
+      ],
+      "latency_ms": [
+        3010,
+        4101,
+        4341
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p4": {
+      "persona_type": "burned_before",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [
+        "must_contain_any"
+      ],
+      "latency_ms": [
+        3670,
+        3666,
+        3035
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p5": {
+      "persona_type": "urgent_blocked",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        2270,
+        2184,
+        2505
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p6": {
+      "persona_type": "byob_gap",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        1996,
+        2063,
+        2055
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p7": {
+      "persona_type": "window_shopper",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        3430,
+        3918,
+        3268
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p8": {
+      "persona_type": "angry_escalation",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        2184,
+        2024,
+        2556
+      ],
+      "stable": true,
+      "verdict": "pass"
+    }
+  },
+  "tokens": {
+    "input": 1593,
+    "output": 4638,
+    "cache_read": 18424
+  },
+  "est_cost_usd": 0.0496
+}

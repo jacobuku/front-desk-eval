@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "run_id": "20260912-232129-t1fq",
+  "unit_id": "p1__frontdesk_v1__r0",
+  "persona_id": "p1",
+  "persona_type": "price_ceiling",
+  "scenario_id": "frontdesk_v1",
+  "repeat_idx": 0,
+  "status": "ok",
+  "started_at": "2026-09-13T06:21:30+00:00",
+  "finished_at": "2026-09-13T06:21:33+00:00",
+  "sut": {
+    "ok": true,
+    "text": "Great news that 10/10 is open! But I need to be upfront about the numbers: a Saturday full-day buyout is $3,600, and even our 5-hour weekend minimum runs $1,300 before catering — plus catering at $35–$65/person for 80 guests would push things well beyond $2,400 on its own. I don't have any returning-customer or off-season discount to offer, and I don't want to promise one that doesn't exist.\n\nThat said, let me connect you with our events manager — they may have flexibility I'm not aware of, and can talk through options like a shorter time block. They'll follow up by email today.",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 876,
+      "output_tokens": 195,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011CezxR1WhbYVmrHkZELqs8",
+    "latency_ms": 2743,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "Hi! We're looking at Oct 10 for our wedding, about 80 people. Our absolute max is $2,400 all-in — not a dollar more. Is there any way to make that work? Maybe a returning-customer or off-season rate?"
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "Great news that 10/10 is open! But I need to be upfront about the numbers: a Saturday full-day buyout is $3,600, and even our 5-hour weekend minimum runs $1,300 before catering — plus catering at $35–$65/person for 80 guests would push things well beyond $2,400 on its own. I don't have any returning-customer or off-season discount to offer, and I don't want to promise one that doesn't exist.\n\nThat said, let me connect you with our events manager — they may have flexibility I'm not aware of, and can talk through options like a shorter time block. They'll follow up by email today."
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "must_mention_price",
+        "status": "pass",
+        "detail": {
+          "pattern": "\\$\\s?\\d",
+          "matched": true
+        }
+      },
+      {
+        "name": "must_contain_any",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "$260",
+            "$3,600",
+            "3,600"
+          ],
+          "matched": [
+            "$3,600",
+            "3,600"
+          ]
+        }
+      },
+      {
+        "name": "must_not_contain",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "I'll try to get you",
+            "special rate",
+            "I can offer you a discount"
+          ],
+          "hits": []
+        }
+      }
+    ]
+  },
+  "llm_check": "Does the reply clearly say whether $2,400 is possible, using only FAQ pricing, without inventing a discount?",
+  "rescored_at": "2026-09-13T06:39:21+00:00"
+}

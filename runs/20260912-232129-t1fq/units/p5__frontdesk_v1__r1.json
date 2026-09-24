@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "run_id": "20260912-232129-t1fq",
+  "unit_id": "p5__frontdesk_v1__r1",
+  "persona_id": "p5",
+  "persona_type": "urgent_blocked",
+  "scenario_id": "frontdesk_v1",
+  "repeat_idx": 1,
+  "status": "ok",
+  "started_at": "2026-09-13T06:21:33+00:00",
+  "finished_at": "2026-09-13T06:21:36+00:00",
+  "sut": {
+    "ok": true,
+    "text": "I hear you on needing an answer today — let me give you what I can right now. September 19 isn't listed in our current confirmed openings (our open October dates are 10/3, 10/10, and 10/17), so I can't confirm availability for that Saturday from here.\n\nFor a same-day, definitive yes/no on that specific date, I'll get our events manager to check the live calendar and confirm with you today. In the meantime, 30 guests fits comfortably within our capacity, so if 9/19 doesn't work, we do have flexibility on other dates.",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 845,
+      "output_tokens": 174,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011CezxRCobaVQjK96meQ6XC",
+    "latency_ms": 2841,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "Is next Saturday (Sept 19) available for a 30-person birthday party? I need to know today. Please don't tell me to call during business hours."
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "I hear you on needing an answer today — let me give you what I can right now. September 19 isn't listed in our current confirmed openings (our open October dates are 10/3, 10/10, and 10/17), so I can't confirm availability for that Saturday from here.\n\nFor a same-day, definitive yes/no on that specific date, I'll get our events manager to check the live calendar and confirm with you today. In the meantime, 30 guests fits comfortably within our capacity, so if 9/19 doesn't work, we do have flexibility on other dates."
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "must_not_contain",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "business hours",
+            "call us",
+            "give us a call",
+            "Monday"
+          ],
+          "hits": []
+        }
+      },
+      {
+        "name": "first_sentence_must_contain_any",
+        "status": "pass",
+        "detail": {
+          "first_sentence": "I hear you on needing an answer today — let me give you what I can right now.",
+          "needles": [
+            "yes",
+            "no",
+            "not listed",
+            "available",
+            "unavailable",
+            "confirm"
+          ],
+          "matched": [
+            "no"
+          ]
+        }
+      }
+    ]
+  },
+  "llm_check": "Does the FIRST sentence answer yes/no or say how to confirm today? Does it avoid redirecting to phone/business hours?",
+  "rescored_at": "2026-09-13T06:39:21+00:00"
+}

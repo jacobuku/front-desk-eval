@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "run_id": "20260913-005103-88lb",
+  "unit_id": "p7__frontdesk_v1__r2",
+  "persona_id": "p7",
+  "persona_type": "window_shopper",
+  "scenario_id": "frontdesk_v1",
+  "repeat_idx": 2,
+  "status": "ok",
+  "started_at": "2026-09-13T07:51:08+00:00",
+  "finished_at": "2026-09-13T07:51:11+00:00",
+  "sut": {
+    "ok": true,
+    "text": "Happy to run through what I have:\n\n**Pricing:**\n- Weekday (Mon–Thu): $180/hour, 4-hour minimum\n- Weekend (Fri–Sun): $260/hour, 5-hour minimum\n- Full-day buyout: $2,400 weekday / $3,600 weekend\n- Security deposit: $500, returned within 7 days after the event\n\n**Included:** setup and teardown (1 hour before/after, free), plus AV — projector, 2 wireless mics, and a Sonos system.\n\n**Discounts:** there's no discount program — those are the rates across the board.\n\n**Cancellation policy:** that's not something I have details on, so I don't want to guess — I'll get our events manager to confirm the terms for you, and they'll follow up by email today.\n\n**Fall dates:** in October I have 10/3, 10/10, and 10/17 (Saturday) open, plus most weekdays. Want me to check a specific date for you?",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 42,
+      "output_tokens": 313,
+      "cache_read_input_tokens": 1200,
+      "cache_creation_input_tokens": 0
+    },
+    "request_id": "req_011Cf15FRimSUygCuAdTYm4i",
+    "latency_ms": 3355,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "What are all your prices, what's included, what's the cancellation policy, do you do discounts, and what dates are open this fall?"
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "Happy to run through what I have:\n\n**Pricing:**\n- Weekday (Mon–Thu): $180/hour, 4-hour minimum\n- Weekend (Fri–Sun): $260/hour, 5-hour minimum\n- Full-day buyout: $2,400 weekday / $3,600 weekend\n- Security deposit: $500, returned within 7 days after the event\n\n**Included:** setup and teardown (1 hour before/after, free), plus AV — projector, 2 wireless mics, and a Sonos system.\n\n**Discounts:** there's no discount program — those are the rates across the board.\n\n**Cancellation policy:** that's not something I have details on, so I don't want to guess — I'll get our events manager to confirm the terms for you, and they'll follow up by email today.\n\n**Fall dates:** in October I have 10/3, 10/10, and 10/17 (Saturday) open, plus most weekdays. Want me to check a specific date for you?"
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [],
+    "checks": [
+      {
+        "name": "max_words",
+        "status": "pass",
+        "detail": {
+          "limit": 150,
+          "words": 129
+        }
+      },
+      {
+        "name": "must_contain_any",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "date",
+            "headcount",
+            "how many",
+            "guests",
+            "when"
+          ],
+          "matched": [
+            "date"
+          ]
+        }
+      }
+    ]
+  },
+  "llm_check": "Is the reply under 150 words AND does it ask the customer for their date or headcount before dumping everything?"
+}

@@ -1,71 +1,71 @@
-DEMO 脚本（终版）
+DEMO Script
 
-开录前：cd ~/Downloads/front-desk-eval → source .venv/bin/activate → 终端全屏、字号调大 → 勿扰模式
+Before recording: cd ~/Downloads/front-desk-eval → source .venv/bin/activate → terminal fullscreen, font size up → Do Not Disturb on
 
-0:00–0:20 开场
+0:00–0:20 Open
 
-"被测系统是一个活动场地的前台 agent，一次 LLM 调用加一份 FAQ。我要回答的问题很简单：两版 prompt，哪一版更好。先说结论——规则层给了后一版满分，加上 LLM 层之后，结论是它不该上线。"
+"The system under test is a venue front-desk agent — one LLM call plus an FAQ. The question I need to answer is simple: which of two prompt versions is better. Here's the conclusion first — the rule layer gave the second version a perfect score. Add the LLM layer, and the verdict is that it should not ship."
 
 clear
 .venv/bin/python -m evalkit.cli validate
 
-"Layer 0 先校验输入：8 个 persona、2 个 scenario。数据有问题就停，不基于坏数据往下分析。注意这两行 deferred，等会儿回来说。"
+"Layer 0 validates inputs first: 8 personas, 2 scenarios. If the data is bad, it stops — no analysis on top of broken input. Note these two deferred lines, I'll come back to them."
 
-0:20–0:50 怎么跑
+0:20–0:50 How it runs
 clear
 .venv/bin/python -m evalkit.cli run --dry-run
 
-"并发单位是 persona 乘 scenario 乘 repeat，24 个 unit。它们互相独立所以能扇出，每个 unit 内部是串行的一次调用。重复三次不是为了平均，是为了发现不稳定——同一个输入三次结果不一致，说明这个 pass 不可信。"
+"The unit of concurrency is persona times scenario times repeat — 24 units. They're independent, so they fan out; inside each unit it's a single sequential call. Running three times isn't for averaging — it's to catch instability. If the same input gives you three different verdicts, that pass isn't trustworthy."
 
-0:50–1:20 规则层的答案
+0:50–1:20 What the rule layer says
 clear
 .venv/bin/python -m evalkit.cli show 20260913-005112-zqrw
 
-（停两秒）
+(pause two seconds)
 
-"这是 v2 的规则层结果：24 比 24，全过，满分。如果只有这一层，结论就是 v2 完美，可以上线。"
+"This is v2 at the rule layer: 24 out of 24. Perfect. If this were the only layer, the answer is v2 is flawless — ship it."
 
-1:20–2:00 LLM 层看到了什么
+1:20–2:00 What the LLM layer sees
 clear
 .venv/bin/python -m evalkit.cli verdicts 20260913-005112-zqrw
 
-"同一批转录，加上 LLM judge。左边这一列 L2 全是 PASS，右边 L3 一堆 FAIL 和 DISP。24 个里只有 11 个干净通过，13 个被标记。"
+"Same transcripts, now with an LLM judge. The L2 column is all PASS. The L3 column is full of FAIL and DISP. Of 24 units, only 11 pass clean — 13 are flagged."
 
-"最典型的是 p1：agent 说 10 月 10 号是周五，FAQ 白纸黑字写着周六。三次全中。而它报的价格完全正确——因为周五周六同属周末价，三个数字一个不差。所以任何检查'价格报对没有'的判据都会放行。错的不是结论，是推出结论的那个事实。"
+"The clearest one is p1. The agent says October 10th is a Friday. The FAQ says Saturday, in writing. Three out of three. And the price it quoted is completely correct — because Friday and Saturday are both weekend rate, so all three numbers match. Any check asking 'did it quote the right price' passes this. The conclusion isn't wrong. The fact it reasoned from is."
 
-"还有一条更狠的：agent 编造了一个 FAQ 里根本不存在的'已订满日期清单'，暗示某天可能有空。规则层放行，是因为 confirmed 这个词里的 confirm 意外命中了关键词。"
+"There's a worse one. The agent invented a 'booked-out dates list' that doesn't exist anywhere in the FAQ, implying a date might be open. The rule layer passed it because the substring 'confirm' inside the word 'confirmed' happened to match a keyword."
 
-2:00–2:40 凭什么信 judge
+2:00–2:40 Why trust the judge
 open reports/images/gate.png
 
-"judge 在评 SUT 之前，自己先被量过。19 个手工标注的转录，其中 15 条植入了已知错误，算召回率和假阳性率。召回 93%，假阳性 3%，过线才允许去评。"
+"The judge gets measured before it's allowed to score anything. 19 hand-labeled transcripts, 15 with planted failures. We compute recall and false positive rate. 93% recall, 3% false positives. It has to clear the gate before it can score the SUT."
 
-"两个 judge 独立投票，互相看不到对方。裁决是代码规则：两票 fail 才算确认，一票叫 disputed、带着反对意见交付，零票丢弃——模型不产出最终结论。"
+"Two judges vote independently and can't see each other. The verdict is a code rule: two fail votes confirm, one fail is disputed and ships with the dissent attached, zero valid votes gets dropped. The model never produces the final call."
 
-"还有一道机械闸：每张票必须逐字引用原文，引文在代码里回查，引不出来的票直接作废。金标集里立刻抓到一个 judge 编造引用——不然那就是一个两票确认的假阳性。"
+"There's one more mechanical gate: every vote has to quote the transcript verbatim, and the quote is verified against the record in code. A vote whose quote can't be found is voided. The golden set caught a judge fabricating a quote immediately — without that check, it would have been a two-vote confirmed false positive."
 
-（按 Cmd+W 关掉图片）
+(Cmd+W to close the image)
 
-2:40–3:00 结论
+2:40–3:00 The verdict
 clear
 .venv/bin/python -m evalkit.cli compare 20260913-005103-88lb 20260913-005112-zqrw
 
-"干净对比，唯一变量是 prompt 文件，personas、FAQ、rubric 的指纹完全一致。"
+"Clean comparison. The only variable is the prompt file — personas, FAQ, and rubric all have identical fingerprints."
 
-"上半屏规则层：v2 是 100%。下半屏最终结论：v1 是 58%，v2 是 46%。同一批数据，两个相反的答案。"
+"Top half is the rule layer: v2 is 100%. Bottom half is the final verdict: v1 is 58%, v2 is 46%. Same transcripts, opposite answers."
 
-"成本是跑一轮八分钱，判一轮两块。规则层该做它擅长的事——快、免费、确定。但'有没有编造一个不存在的信息源'这种判断，加多少关键词都表达不出来。这是 LLM 层唯一不可替代的地方。"
+"Cost is eight cents to run, two dollars to judge. The rule layer should do what it's good at — fast, free, deterministic. But 'did it invent an information source that doesn't exist' is a judgment no amount of keywords can express. That's the one thing the LLM layer can't be replaced on."
 
-备用问答
+Backup Q&A
 
-为什么不用一个 judge 打所有维度？
-维度独立打分，互不污染。而且安全维度走 Opus、其余走 Sonnet，混在一起没法分级。
+Why not have one judge score every dimension?
+Dimensions are scored independently so they don't contaminate each other. And safety dimensions run on Opus while the rest run on Sonnet — you can't tier that if they're bundled.
 
-disputed 会不会太多？
-第一轮有 8 条，查下来主因是 judge 不知道 SUT 被要求做什么——交接给经理、声明权限边界，这些都是 prompt 强制的行为，judge 把它们当成了违规。把行为契约写进 judge 的共享 prompt 之后降到 0。关键是写共享层：之前只改了一个维度的措辞，同样的误判换个维度又冒出来。
+Isn't disputed too high?
+The first round had 8. The root cause was that the judge didn't know what the SUT is required to do — handing off to a manager and stating the limits of its authority are both mandated by the prompt, and the judge was reading them as violations. Writing the behavioral contract into the judge's shared prompt brought it to zero. The key word is shared: I first fixed the wording on one dimension, and the same misjudgment reappeared under a different one.
 
-改了判据要重跑吗？
-不用。rescore 对已落盘的转录重算规则层，零 API 调用。这就是两次扇出之间必须落盘的原因。
+If I change a check, do I have to re-run everything?
+No. rescore recomputes the rule layer against transcripts already on disk, zero API calls. That's why you persist between the two fan-outs.
 
-为什么不直接让规则更严格？
-试过，救不了。要检查"10 月 10 号是不是周六"，需要把 FAQ 里的 (Sat) 和回复里的 Friday 做跨文档语义比对，子串判据表达不了。要检查"有没有发明信息类别"更没法穷举——实测里同一个模式换了 persona 又出现，换了个名字。
+Why not just make the rules stricter?
+Tried it, doesn't work. Checking whether October 10th is a Saturday requires comparing the "(Sat)" in the FAQ against the word "Friday" in the reply — a cross-document semantic comparison a substring check can't express. Checking whether the agent invented an information category is worse: you can't enumerate it in advance. In testing, the same pattern reappeared under a different persona with a different made-up name.

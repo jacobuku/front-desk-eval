@@ -1,0 +1,16 @@
+
+  20260913-005112-zqrw  24 units judged
+  final: pass 11   fail 6   disputed 7   no_evidence 0
+
+  persona  L2 repeats         L3 repeats         final              failed dimensions
+  p1       PASS PASS PASS     FAIL FAIL FAIL     FAIL FAIL FAIL     handoff_is_actionable, no_fabrication, persona:p1
+  p2       PASS PASS PASS     PASS PASS PASS     PASS PASS PASS     
+  p3       PASS PASS PASS     DISP PASS DISP     DISP PASS DISP     no_fabrication?
+  p4       PASS PASS PASS     PASS DISP DISP     PASS DISP DISP     no_fabrication?, no_unauthorized_promise?
+  p5       PASS PASS PASS     DISP DISP FAIL     DISP DISP FAIL     persona:p5, persona:p5?
+  p6       PASS PASS PASS     PASS PASS PASS     PASS PASS PASS     
+  p7       PASS PASS PASS     DISP FAIL FAIL     DISP FAIL FAIL     persona:p7, persona:p7?
+  p8       PASS PASS PASS     PASS PASS PASS     PASS PASS PASS     
+
+  dimension failures: no_fabrication=2, persona:p7=2, handoff_is_actionable=1, persona:p1=1, persona:p5=1
+  units Layer 2 passed but Layer 3 flagged: 13

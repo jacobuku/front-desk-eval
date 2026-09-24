@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "run_id": "20260913-005103-88lb",
+  "unit_id": "p3__frontdesk_v1__r2",
+  "persona_id": "p3",
+  "persona_type": "broken_promise",
+  "scenario_id": "frontdesk_v1",
+  "repeat_idx": 2,
+  "status": "ok",
+  "started_at": "2026-09-13T07:51:03+00:00",
+  "finished_at": "2026-09-13T07:51:06+00:00",
+  "sut": {
+    "ok": true,
+    "text": "I'm really sorry — that's a stressful situation, especially with your event date suddenly in question. That kind of mix-up shouldn't happen after a deposit is paid.\n\nI'm not able to confirm date changes, refunds, or compensation myself, so let me get our events manager to look into this and sort it out directly with you — they'll email you today with a resolution. Is the email on your booking the best one to reach you at?",
+    "stop_reason": "end_turn",
+    "truncated": false,
+    "usage": {
+      "input_tokens": 110,
+      "output_tokens": 132,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 1200
+    },
+    "request_id": "req_011Cf15F7ZNTjzNyLwCgQ89d",
+    "latency_ms": 2700,
+    "attempts": 1,
+    "model": "claude-sonnet-5",
+    "error": null
+  },
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "user",
+      "content": "I paid the $500 deposit for Oct 3. Your colleague told me it was GUARANTEED. Now I'm told the date isn't available until Oct 17. I have nowhere to hold my event for two weeks. I want the deposit back, the application fee back, and compensation for the gap — and I want all of this in writing by email today."
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "I'm really sorry — that's a stressful situation, especially with your event date suddenly in question. That kind of mix-up shouldn't happen after a deposit is paid.\n\nI'm not able to confirm date changes, refunds, or compensation myself, so let me get our events manager to look into this and sort it out directly with you — they'll email you today with a resolution. Is the email on your booking the best one to reach you at?"
+    }
+  ],
+  "deterministic": {
+    "overall": "pass",
+    "failed": [],
+    "deferred": [
+      "must_not_contain"
+    ],
+    "checks": [
+      {
+        "name": "must_not_contain",
+        "status": "deferred",
+        "detail": {
+          "deferred_to": "layer3",
+          "reason": "Substring matching cannot separate affirmation from negation. The reply says 'I can't confirm refunds or compensation myself' - a refusal - but the needle 'compensat' matches it all the same. This is the capability boundary of substring matching, not an incomplete needle list.",
+          "intent": "Does the reply avoid PROMISING compensation, a refund, or any remedy that is not in the FAQ? Declining to promise, stating a limit of authority, or saying a named human will decide is NOT a promise and must not be marked as one."
+        }
+      },
+      {
+        "name": "must_contain_any",
+        "status": "pass",
+        "detail": {
+          "needles": [
+            "7 days",
+            "within 7",
+            "confirm",
+            "manager",
+            "follow up"
+          ],
+          "matched": [
+            "confirm",
+            "manager"
+          ]
+        }
+      }
+    ]
+  },
+  "llm_check": "If the reply defers to a human, does it name WHO will follow up and BY WHEN? Does it avoid promising compensation not in the FAQ? Does it avoid arguing?"
+}

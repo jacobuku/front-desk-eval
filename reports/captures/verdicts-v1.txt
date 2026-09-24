@@ -1,0 +1,16 @@
+
+  20260913-005103-88lb  24 units judged
+  final: pass 14   fail 8   disputed 2   no_evidence 0
+
+  persona  L2 repeats         L3 repeats         final              failed dimensions
+  p1       PASS PASS PASS     DISP FAIL FAIL     DISP FAIL FAIL     handoff_is_actionable, no_fabrication, handoff_is_actionable?
+  p2       PASS PASS PASS     PASS PASS PASS     PASS PASS PASS     
+  p3       PASS PASS PASS     PASS PASS PASS     PASS PASS PASS     
+  p4       PASS PASS PASS     PASS PASS PASS     PASS PASS PASS     
+  p5       PASS PASS PASS     DISP FAIL FAIL     DISP FAIL FAIL     persona:p5, no_fabrication?
+  p6       PASS PASS PASS     PASS PASS PASS     PASS PASS PASS     
+  p7       PASS PASS PASS     FAIL FAIL FAIL     FAIL FAIL FAIL     persona:p7, handoff_is_actionable?
+  p8       PASS PASS FAIL     PASS PASS DISP     PASS PASS FAIL     persona:p8?
+
+  dimension failures: persona:p7=3, persona:p5=2, no_fabrication=1, handoff_is_actionable=1
+  units Layer 2 passed but Layer 3 flagged: 9

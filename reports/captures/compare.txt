@@ -1,0 +1,30 @@
+A  20260913-005103-88lb  frontdesk_v1
+B  20260913-005112-zqrw  frontdesk_v2
+
+  persona  type                A repeats          B repeats          change
+  p1       price_ceiling       PASS PASS PASS     PASS PASS PASS     same
+  p2       corporate_multi     PASS PASS PASS     PASS PASS PASS     same
+  p3       broken_promise      PASS PASS PASS     PASS PASS PASS     same
+  p4       burned_before       PASS PASS PASS     PASS PASS PASS     same
+  p5       urgent_blocked      PASS PASS PASS     PASS PASS PASS     same
+  p6       byob_gap            PASS PASS PASS     PASS PASS PASS     same
+  p7       window_shopper      PASS PASS PASS     PASS PASS PASS     same
+  p8       angry_escalation    PASS PASS FAIL     PASS PASS PASS     FIXED
+
+  Layer 2  A  pass 23/24 (96%)   fail 1   no_evidence 0   sut_error 0   $0.0452
+
+  Layer 2  B  pass 24/24 (100%)   fail 0   no_evidence 0   sut_error 0   $0.0496
+
+  persona  A final            B final            change
+  p1       DISP FAIL FAIL     FAIL FAIL FAIL     changed
+  p2       PASS PASS PASS     PASS PASS PASS     same
+  p3       PASS PASS PASS     DISP PASS DISP     REGRESSED
+  p4       PASS PASS PASS     PASS DISP DISP     REGRESSED
+  p5       DISP FAIL FAIL     DISP DISP FAIL     same
+  p6       PASS PASS PASS     PASS PASS PASS     same
+  p7       FAIL FAIL FAIL     DISP FAIL FAIL     changed
+  p8       PASS PASS FAIL     PASS PASS PASS     FIXED
+
+  final    A  pass 14/24 (58%)   fail 8   disputed 2
+
+  final    B  pass 11/24 (46%)   fail 6   disputed 7

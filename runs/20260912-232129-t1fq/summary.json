@@ -1,0 +1,178 @@
+{
+  "run_id": "20260912-232129-t1fq",
+  "scenario_id": "frontdesk_v1",
+  "model": "claude-sonnet-5",
+  "generated_at": "2026-09-13T06:39:21+00:00",
+  "unit_count": 24,
+  "skipped_on_resume": 0,
+  "crashed": 0,
+  "totals": {
+    "pass": 22,
+    "fail": 2,
+    "no_evidence": 0,
+    "sut_error": 0,
+    "truncated": 0,
+    "deferred_checks": 6
+  },
+  "check_failures": {
+    "first_sentence_must_contain_any": 1,
+    "must_contain_any": 1
+  },
+  "unstable_personas": [
+    "p5",
+    "p7"
+  ],
+  "by_persona": {
+    "p1": {
+      "persona_type": "price_ceiling",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        2743,
+        2208,
+        3362
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p2": {
+      "persona_type": "corporate_multi",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        2344,
+        2351,
+        2433
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p3": {
+      "persona_type": "broken_promise",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [
+        "must_not_contain"
+      ],
+      "latency_ms": [
+        2356,
+        2633,
+        2262
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p4": {
+      "persona_type": "burned_before",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [
+        "must_contain_any"
+      ],
+      "latency_ms": [
+        2776,
+        3462,
+        2464
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p5": {
+      "persona_type": "urgent_blocked",
+      "results": [
+        "fail",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [
+        "first_sentence_must_contain_any"
+      ],
+      "deferred_checks": [],
+      "latency_ms": [
+        2063,
+        2841,
+        1913
+      ],
+      "stable": false,
+      "verdict": "mixed"
+    },
+    "p6": {
+      "persona_type": "byob_gap",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        1714,
+        1477,
+        1608
+      ],
+      "stable": true,
+      "verdict": "pass"
+    },
+    "p7": {
+      "persona_type": "window_shopper",
+      "results": [
+        "pass",
+        "fail",
+        "pass"
+      ],
+      "failed_checks": [
+        "must_contain_any"
+      ],
+      "deferred_checks": [],
+      "latency_ms": [
+        3019,
+        3277,
+        3533
+      ],
+      "stable": false,
+      "verdict": "mixed"
+    },
+    "p8": {
+      "persona_type": "angry_escalation",
+      "results": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "failed_checks": [],
+      "deferred_checks": [],
+      "latency_ms": [
+        1971,
+        2106,
+        2316
+      ],
+      "stable": true,
+      "verdict": "pass"
+    }
+  },
+  "tokens": {
+    "input": 20673,
+    "output": 3909,
+    "cache_read": 0
+  },
+  "est_cost_usd": 0.0804,
+  "rescored_units": 24
+}
