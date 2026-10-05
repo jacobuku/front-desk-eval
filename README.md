@@ -121,7 +121,7 @@ developed and tested on Python 3.14 with `anthropic==1.5.0`.
 ```bash
 cd front-desk-eval
 python3 -m venv .venv
-.venv/bin/pip install anthropic==1.5.0
+.venv/bin/pip install -r requirements.txt
 
 # No API key needed: read the stored runs and run the unit tests
 .venv/bin/python -m evalkit.cli show 20260913-005112-zqrw          # Layer 2 view of v2: 24/24
