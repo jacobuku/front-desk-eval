@@ -1,6 +1,6 @@
 DEMO Script
 
-Before recording: cd ~/Downloads/front-desk-eval → source .venv/bin/activate → terminal fullscreen, font size up → Do Not Disturb on
+Before recording: cd ~/Projects/front-desk-eval → source .venv/bin/activate → terminal fullscreen, font size up → Do Not Disturb on
 
 0:00–0:20 Open
 
